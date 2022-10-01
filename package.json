@@ -2,13 +2,22 @@
   "name": "ts-debounce-throttle",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/lifechat/ts-debounce-throttle.git",
-  "scripts": {},
   "author": "lifechat <lifechat@126.cn>",
   "license": "MIT",
-  
+  "repository": "https://github.com/lifechat/ts-debounce-throttle.git",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "prettier --write .",
+      "npm run lint"
+    ]
+  },
   "devDependencies": {
-    "husky": "^8.0.1"
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "2.7.1"
   },
   "keywords": [
     "throttle",
