@@ -1,8 +1,8 @@
 # TypeScript implementation of debounce function
 
-![Build Status](https://github.com/chodorowicz/ts-debounce//workflows/node-ci/badge.svg)
-[![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/ts-debounce.svg)](https://www.npmjs.com/package/ts-debounce)
-[![npm type definitions](https://img.shields.io/npm/types/ts-debounce.svg)](https://www.npmjs.com/package/ts-debounce)
+![Build Status](https://github.com/chodorowicz/ts-debounce-throttle//workflows/node-ci/badge.svg)
+[![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/ts-debounce-throttle.svg)](https://www.npmjs.com/package/ts-debounce-throttle)
+[![npm type definitions](https://img.shields.io/npm/types/ts-debounce-throttle.svg)](https://www.npmjs.com/package/ts-debounce-throttle)
 
 Debounce创建了一个新的函数g，当它被调用时，会将原函数f的调用延迟到n毫秒，但如果在n毫秒之前有新的调用，就会放弃之前的延迟排放。
 
@@ -13,19 +13,19 @@ Debounce创建了一个新的函数g，当它被调用时，会将原函数f的�
 你可以使用`npm`来安装这个软件包，命令如下
 
 ```bash
-npm install ts-debounce-throttle
+npm install ts-debounce-throttle-throttle
 ```
 
 如果你喜欢`yarn'，可以用下面的命令安装
 
 ```bash
-yarn add ts-debounce-throttle
+yarn add ts-debounce-throttle-throttle
 ```
 
 ## 函数参数
 
 ```ts
-import { debounce } from "ts-debounce";
+import { debounce } from "ts-debounce-throttle";
 
 const debouncedFunction = debounce(originalFunction, waitMilliseconds, options);
 ```
