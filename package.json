@@ -1,0 +1,18 @@
+{
+  "name": "ts-debounce-throttle",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/lifechat/ts-debounce-throttle.git",
+  "scripts": {},
+  "author": "lifechat <lifechat@126.cn>",
+  "license": "MIT",
+  
+  "devDependencies": {
+    "husky": "^8.0.1"
+  },
+  "keywords": [
+    "throttle",
+    "typescript",
+    "debounce"
+  ]
+}
