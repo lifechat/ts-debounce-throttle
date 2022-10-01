@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "es5",
+    "module": "esnext",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "declaration": true,
+    "allowJs": true,
+    "declaration": true,
+    "sourceMap": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["dom", "es2015", "es2017"],
+    "rootDir": ".",
+    "outDir": "dist/typings"
+  },
+  "exclude": ["**/dist/", "**/node_modules/", "**/webpack.*", "**/commitlint.*"]
+}
