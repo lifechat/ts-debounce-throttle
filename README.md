@@ -1,6 +1,5 @@
 # TypeScript implementation of debounce function
 
-![Build Status](https://github.com/chodorowicz/ts-debounce-throttle//workflows/node-ci/badge.svg)
 [![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/ts-debounce-throttle.svg)](https://www.npmjs.com/package/ts-debounce-throttle)
 [![npm type definitions](https://img.shields.io/npm/types/ts-debounce-throttle.svg)](https://www.npmjs.com/package/ts-debounce-throttle)
 
