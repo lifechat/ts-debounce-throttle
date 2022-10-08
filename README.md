@@ -58,8 +58,8 @@ debouncedFunction.cancel()
 你也可以去掉一个返回承诺的函数 f。返回的 Promise 将与原始函数的返回值一起解析（除非被取消）。
 
 ```ts
-const asyncFunction = async () => "value";
-const g = debounce(asyncFunction);
-const returnValue = await g();
-returnValue === "value"; // true
+const asyncFunction = async () => 'value'
+const g = debounce(asyncFunction)
+const returnValue = await g()
+returnValue === 'value' // true
 ```
