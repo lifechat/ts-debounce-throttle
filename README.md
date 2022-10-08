@@ -1,4 +1,4 @@
-# TypeScript implementation of debounce function
+# TypeScript implementation of debounce and throttle function
 
 [![npm bundle size (minified + gzip)](https://img.shields.io/bundlephobia/minzip/ts-debounce-throttle.svg)](https://www.npmjs.com/package/ts-debounce-throttle)
 [![npm type definitions](https://img.shields.io/npm/types/ts-debounce-throttle.svg)](https://www.npmjs.com/package/ts-debounce-throttle)
@@ -12,19 +12,19 @@ Debounce创建了一个新的函数g，当它被调用时，会将原函数f的�
 你可以使用`npm`来安装这个软件包，命令如下
 
 ```bash
-npm install ts-debounce-throttle-throttle
+npm i @lifechat/debounce-throttle
 ```
 
 如果你喜欢`yarn'，可以用下面的命令安装
 
 ```bash
-yarn add ts-debounce-throttle-throttle
+yarn add @lifechat/debounce-throttle
 ```
 
 ## 函数参数
 
 ```ts
-import { debounce } from "ts-debounce-throttle";
+import { debounce } from "@lifechat/debounce-throttle";
 
 const debouncedFunction = debounce(originalFunction, waitMilliseconds, options);
 ```
@@ -53,7 +53,6 @@ debouncedFunction.cancel();
 
 ## Promises
 每次你调用debounced函数时，都会返回一个Promise，这个Promise将在原始函数被最终调用时被resolve。如果debounced函数被取消了，这个Promise将被reject掉。
-
 你也可以去掉一个返回承诺的函数f。返回的Promise将与原始函数的返回值一起解析（除非被取消）。
 ```ts
 const asyncFunction = async () => "value";

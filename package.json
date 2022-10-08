@@ -1,6 +1,6 @@
 {
-  "name": "ts-debounce-throttle",
-  "version": "1.0.1",
+  "name": "@lifechat/debounce-throttle",
+  "version": "1.0.2",
   "main": "index.js",
   "author": "lifechat <lifechat@126.cn>",
   "homepage": "ts-debounce-throttle",

@@ -160,3 +160,5 @@ describe('debounce', () => {
     })
   })
 })
+
+describe('Throttle', () => {})

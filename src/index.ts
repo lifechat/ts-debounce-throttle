@@ -5,7 +5,7 @@ export type Options<Result> = {
 }
 
 //节流
-// export interface Throttle<Args extends any[]> {}
+export interface ThrottleFunction<Args extends any[], F extends (...args: Args) => any> {}
 
 //防抖
 export interface DebouncedFunction<Args extends any[], F extends (...args: Args) => any> {
@@ -90,4 +90,8 @@ export function debounce<Args extends any[], F extends (...args: Args) => any>(
   }
 
   return debouncedFunction
+}
+
+export function throttle<Args extends any[], F extends (...args: Args) => any>(): ThrottleFunction<Args, F> {
+  return Function
 }
