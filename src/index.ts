@@ -5,7 +5,10 @@ export type Options<Result> = {
 }
 
 //节流
-export interface ThrottleFunction<Args extends any[], F extends (...args: Args) => any> {}
+export interface ThrottleFunction<Args extends any[], F extends (...args: Args) => any> {
+  (this: ThisParameterType<F>, ...args: Args & Parameters<F>): Promise<ReturnType<F>>
+  cancel: (reason?: any) => void
+}
 
 //防抖
 export interface DebouncedFunction<Args extends any[], F extends (...args: Args) => any> {
@@ -13,10 +16,10 @@ export interface DebouncedFunction<Args extends any[], F extends (...args: Args)
   cancel: (reason?: any) => void
 }
 
-// interface ThrottlePromise<FunctionReturn> {
-//   resolve: (result: FunctionReturn) => void
-//   reject: (reason?: any) => void
-// }
+interface ThrottlePromise<FunctionReturn> {
+  resolve: (result: FunctionReturn) => void
+  reject: (reason?: any) => void
+}
 
 interface DebouncedPromise<FunctionReturn> {
   resolve: (result: FunctionReturn) => void
@@ -92,6 +95,73 @@ export function debounce<Args extends any[], F extends (...args: Args) => any>(
   return debouncedFunction
 }
 
-export function throttle<Args extends any[], F extends (...args: Args) => any>(): ThrottleFunction<Args, F> {
-  return Function
+export function throttle<Args extends any[], F extends (...args: Args) => any>(
+  func: F,
+  waitMilliseconds = 50,
+  options: Options<ReturnType<F>> = {}
+): ThrottleFunction<Args, F> {
+  let timeoutId: ReturnType<typeof setTimeout> | undefined
+
+  const isImmediate = options.isImmediate ?? false
+
+  const callback = options.callback ?? false
+
+  const maxWait = options.maxWait
+
+  let lastInvokeTime = Date.now()
+
+  let promises: ThrottlePromise<ReturnType<F>>[] = []
+
+  function nextInvokeTimeout() {
+    if (maxWait !== undefined) {
+      const timeSinceLastInvocation = Date.now() - lastInvokeTime
+
+      if (timeSinceLastInvocation - waitMilliseconds >= maxWait) {
+        return maxWait - timeSinceLastInvocation
+      }
+    }
+
+    return waitMilliseconds
+  }
+
+  const throttledFunction = function (this: ThisParameterType<F>, ...args: Parameters<F>) {
+    const context = this
+    return new Promise<ReturnType<F>>((resolve, reject) => {
+      const invokeFunction = function () {
+        timeoutId = undefined
+        lastInvokeTime = Date.now()
+        if (!isImmediate) {
+          const result = func.apply(context, args)
+          callback && callback(result)
+          promises.forEach(({ resolve }) => resolve(result))
+          promises = []
+        }
+      }
+
+      const shouldCallNow = isImmediate && timeoutId === undefined
+
+      if (timeoutId !== undefined) {
+        clearTimeout(timeoutId)
+      }
+
+      timeoutId = setTimeout(invokeFunction, nextInvokeTimeout())
+      if (shouldCallNow) {
+        const result = func.apply(context, args)
+        callback && callback(result)
+        return resolve(result)
+      }
+      promises.push({ resolve, reject })
+    })
+  }
+
+  throttledFunction.cancel = function (reason?: any) {
+    if (timeoutId !== undefined) {
+      clearTimeout(timeoutId)
+    }
+
+    promises.forEach(({ reject }) => reject(reason))
+    promises = []
+  }
+
+  return throttledFunction
 }

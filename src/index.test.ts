@@ -1,11 +1,10 @@
-import { debounce } from '../src/index'
+import { debounce, throttle } from '../src/index'
 
 const FIXED_SYSTEM_TIME = '2020-01-12T00:00:00Z'
 
 describe('debounce', () => {
   beforeEach(() => {
     jest.useFakeTimers()
-    // jest.useFakeTimers("modern");
     jest.setSystemTime(Date.parse(FIXED_SYSTEM_TIME))
   })
   test('it properly debounces function', () => {
@@ -161,4 +160,49 @@ describe('debounce', () => {
   })
 })
 
-describe('Throttle', () => {})
+describe('throttle', () => {
+  beforeEach(() => {
+    jest.useFakeTimers()
+    jest.setSystemTime(Date.parse(FIXED_SYSTEM_TIME))
+  })
+
+  test('throttle function', () => {
+    const func = jest.fn()
+
+    const throttledFunction = throttle(func, 100)
+
+    throttledFunction()
+    expect(func).not.toBeCalled()
+
+    jest.advanceTimersByTime(50)
+
+    expect(func).not.toBeCalled()
+
+    jest.advanceTimersByTime(100)
+    expect(func).toBeCalled()
+    expect(func.mock.calls.length).toBe(1)
+  })
+
+  describe('', () => {})
+
+  describe('promises', () => {
+    // test('',async () => {})
+
+    // test('',async () => {})
+
+    test('it properly rejects after throttle function is cancelled', async () => {
+      const func = jest.fn()
+
+      const throttledFunction = throttle(func, 100)
+
+      const result = throttledFunction()
+      const result1 = throttledFunction()
+
+      const reason = 'jest test'
+      throttledFunction.cancel(reason)
+
+      await expect(result).rejects.toEqual(reason)
+      await expect(result1).rejects.toEqual(reason)
+    })
+  })
+})

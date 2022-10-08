@@ -1,9 +1,9 @@
 {
   "name": "@lifechat/debounce-throttle",
-  "version": "1.0.2",
+  "version": "1.0.7",
   "main": "index.js",
   "author": "lifechat <lifechat@126.cn>",
-  "homepage": "https://www.npmjs.com/package/@lifechat/debounce-throttle",
+  "homepage": "https://lifechat.github.io/",
   "license": "MIT",
   "repository": {
     "type": "git",
